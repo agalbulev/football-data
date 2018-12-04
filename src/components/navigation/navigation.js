@@ -30,7 +30,12 @@ class Navigation extends Component {
 
         const competitions = Object.keys(this.props.competitions).map(com => {
             const competition = this.props.competitions[com].competition;
-            return <DropdownItem onClick={() => { this.changeLocation(`/${competition.code}`)} }>{competition.name}</DropdownItem>
+            return <DropdownItem
+                key={competition.code} 
+                active={ this.props.location.pathname === `/${competition.code}` || ( competition.code === 'PL' && this.props.location.pathname === '/' )  } 
+                onClick={() => { this.changeLocation(`/${competition.code}`)} }
+            >
+            {competition.name}</DropdownItem>
         })
 
         return (

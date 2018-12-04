@@ -13,6 +13,8 @@ export const getCompetitions = () => {
                 axiosInstance.get(`/competitions/2002/standings`),
                 axiosInstance.get(`/competitions/2019/standings`),
                 axiosInstance.get(`/competitions/2014/standings`),
+                axiosInstance.get(`/competitions/2003/standings`),
+                axiosInstance.get(`/competitions/2017/standings`)
             ]).then(res => {
                 const competitions = {};
     
