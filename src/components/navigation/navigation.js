@@ -32,7 +32,7 @@ class Navigation extends Component {
             const competition = this.props.competitions[com].competition;
             return <DropdownItem
                 key={competition.code} 
-                active={ this.props.location.pathname === `/${competition.code}` || ( competition.code === 'PL' && this.props.location.pathname === '/' )  } 
+                active={ this.props.location.pathname === `/${competition.code}` } 
                 onClick={() => { this.changeLocation(`/${competition.code}`)} }
             >
             {competition.name}</DropdownItem>
@@ -48,6 +48,9 @@ class Navigation extends Component {
                                         Competitions
                                     </DropdownToggle>
                                     <DropdownMenu className='dropdown-menu'>
+                                        <DropdownItem 
+                                            onClick={() => { this.changeLocation(`/`)} }
+                                            active={ this.props.location.pathname === '/' }>Best of Europe</DropdownItem>
                                         {competitions}
                                     </DropdownMenu>
                                 </Dropdown>
