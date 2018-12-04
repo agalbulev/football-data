@@ -4,7 +4,7 @@ import axiosInstance from '../axios';
 export const getCompetitions = () => {
     return dispatch => {
         const timeNow = Date.now();
-        const lastSync = localStorage.getItem('lastSyncCompetitions ') || timeNow;
+        const lastSync = localStorage.getItem('lastSyncCompetitions') || timeNow;
 
         if (timeNow === lastSync || timeNow - lastSync > 60000) {
             axios.all([

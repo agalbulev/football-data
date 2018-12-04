@@ -1,4 +1,4 @@
-const footballData = (state = 0, action) => {
+const footballData = (state = { competitions: null }, action) => {
     switch (action.type) {
         case 'GET_DATA_SUCCESS':
             return Object.assign({}, state, {
