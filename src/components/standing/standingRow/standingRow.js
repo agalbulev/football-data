@@ -8,7 +8,7 @@ const StandingRow = (props) => {
     return (
         <tr>
             <th scope='row'>{ props.position || props.club.position }</th>
-            <td>
+            <td className={classes.TeamNameCell}>
                 { teamLogo }
                 { teamName }
             </td>

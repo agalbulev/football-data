@@ -1,16 +1,16 @@
 import React, {
   Component
 } from 'react';
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import Layout from './components/layout/layout'
 
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <MemoryRouter>
         <Layout />
-      </BrowserRouter>
+      </MemoryRouter>
     )
   }
 }

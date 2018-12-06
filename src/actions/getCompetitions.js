@@ -1,5 +1,6 @@
 import axios from 'axios';
 import axiosInstance from '../axios';
+import { setBestEuropa } from './setBestEuropa';
 
 export const getCompetitions = () => {
     return dispatch => {
@@ -30,11 +31,13 @@ export const getCompetitions = () => {
                 });
     
                 dispatch(getDataSuccess(competitions));
+                dispatch(setBestEuropa(competitions));
                 localStorage.setItem('lastSyncCompetitions', Date.now());
                 localStorage.setItem('competitions', JSON.stringify(competitions));
             })
         } else {
             dispatch(getDataSuccess(JSON.parse(localStorage.getItem('competitions'))));
+            dispatch(setBestEuropa(JSON.parse(localStorage.getItem('competitions'))));
         }
     }
 }

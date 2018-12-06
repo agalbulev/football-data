@@ -11,7 +11,7 @@ const Layout = () => {
             <main>
                 <Switch>
                     <Route exact path="/" component={StandingAll} />
-                    <Route path="/:league" component={Standing} />
+                    <Route path="/league/:league" component={Standing} />
                 </Switch>
             </main>
         </React.Fragment>

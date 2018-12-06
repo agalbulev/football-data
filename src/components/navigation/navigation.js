@@ -32,8 +32,8 @@ class Navigation extends Component {
             const competition = this.props.competitions[com].competition;
             return <DropdownItem
                 key={competition.code} 
-                active={ this.props.location.pathname === `/${competition.code}` } 
-                onClick={() => { this.changeLocation(`/${competition.code}`)} }
+                active={ this.props.location.pathname.indexOf(competition.code) !== -1 } 
+                onClick={() => { this.changeLocation(`/league/${competition.code}`)} }
             >
             {competition.name}</DropdownItem>
         })
