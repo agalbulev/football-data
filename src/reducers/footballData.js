@@ -12,6 +12,12 @@ const footballData = (state = { competitions: null }, action) => {
                     ...action.payload
                 ]
             })
+        case 'SET_TEAM_ORDER':
+            return Object.assign({}, state, {
+                order: [
+                    ...action.payload
+                ]
+            })
         default:
             return state;
     }

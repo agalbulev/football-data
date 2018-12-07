@@ -4,12 +4,16 @@ import StandingRow from '../standing/standingRow/standingRow'
 import StandingTable from '../standing/standingTable/standingTable';
 
 const StandingAll = (props) => {
-    if (!props.bestEuropa) {
+    if (!props.bestEuropa || !props.order) {
         return null;
     }
 
     const all = props.bestEuropa.map((team, index) => {
-        return <StandingRow key={ index } position={ index + 1 } club={ team } />
+        const teamOrder = props.order.find(o => {
+            return o.id === team.team.id
+        }).orderChange;
+
+        return <StandingRow key={ index } position={ index + 1 } club={ team } order={ teamOrder } />
     })
 
     return <StandingTable competitions={all}/>;
@@ -17,7 +21,8 @@ const StandingAll = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        bestEuropa: state.footbalData.bestEuropa
+        bestEuropa: state.footbalData.bestEuropa,
+        order: state.footbalData.order
     }
 }
 
