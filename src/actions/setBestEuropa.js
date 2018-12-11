@@ -31,7 +31,7 @@ export const setBestEuropa = (competitions) => {
         }
 
         const orderChanges = storeOrder.map((sOrder, index) => {
-            const oChange = oldStoredTeamOrder.indexOf(sOrder) !== -1 ? index - oldStoredTeamOrder.indexOf(sOrder) : 'new';
+            const oChange = oldStoredTeamOrder.indexOf(sOrder) !== -1 ? (index - oldStoredTeamOrder.indexOf(sOrder)) * -1 : 'new';
 
             return {
                 id: sOrder,
