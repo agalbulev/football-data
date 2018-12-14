@@ -10,7 +10,7 @@ export const setBestEuropa = (competitions) => {
             all = [...all, ...competitions[com].standings];
         })
     
-        all = slice(orderBy(all, ['won', 'points', 'playedGames'], ['desc', 'desc', 'asc']), 0, 20);
+        all = slice(orderBy(all, ['won', 'playedGames', 'points'], ['desc', 'asc', 'desc']), 0, 20);
 
         const storeOrder = all.map(team => {
             return team.team.id;
