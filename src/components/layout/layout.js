@@ -12,6 +12,7 @@ const Layout = () => {
                 <Switch>
                     <Route exact path="/" component={StandingAll} />
                     <Route path="/league/:league" component={Standing} />
+                    <Route path="/matches/:league/:matchday" component={Standing} />
                 </Switch>
             </main>
         </React.Fragment>

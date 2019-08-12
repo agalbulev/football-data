@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StandingTable from './standingTable/standingTable';
 import StandingRow from './standingRow/standingRow';
+import { getMatches } from '../../actions/getMatches';
 
 class Standing extends Component {
 
@@ -19,7 +20,10 @@ class Standing extends Component {
         })
 
         return (
-            <StandingTable competitions={competitions}/>
+            <>
+                <button className="btn" onClick={getMatches('2021')}>Matches</button>
+                <StandingTable competitions={competitions}/>
+            </>
         )
     }
 }
