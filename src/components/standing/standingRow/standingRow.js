@@ -2,17 +2,17 @@ import React from "react";
 import classes from "./standingRow.module.scss";
 
 const StandingRow = props => {
-  // const teamLogo = props.club.team.crestUrl ? (
-  //   <img
-  //     className={classes.TeamLogo}
-  //     src={props.club.team.crestUrl}
-  //     onError={event => {
-  //       event.target.style.display = "none";
-  //     }
-  //   }
-  //     alt={props.club.team.name}
-  //   />
-  // ) : null;
+  const teamLogo = props.club.team.crestUrl ? (
+    <img
+      className={classes.TeamLogo}
+      src={props.club.team.crestUrl}
+      onError={event => {
+        event.target.style.display = "none";
+      }
+    }
+      alt={props.club.team.name}
+    />
+  ) : null;
   const teamName = props.position
     ? `${props.club.position}. ${props.club.team.name}`
     : props.club.team.name;
@@ -39,7 +39,7 @@ const StandingRow = props => {
         {props.position || props.club.position} {order}
       </th>
       <td className={classes.TeamNameCell}>
-        {teamName}
+        {teamLogo} {teamName}
       </td>
       <td>{props.club.playedGames}</td>
       <td>{props.club.won}</td>
