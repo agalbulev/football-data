@@ -6,7 +6,7 @@ export const getMatchsByCompetition = competition => {
     const lastSync =
       localStorage.getItem(`lastSync${competition}Matches`) || timeNow;
 
-    if (timeNow === lastSync || timeNow - lastSync > 60000) {
+    if (timeNow === lastSync || timeNow - lastSync > (60000 * 30)) {
       axiosInstance.get(`/competitions/${competition}/matches`).then(res => {
         localStorage.setItem(`lastSync${competition}Matches`, Date.now());
         localStorage.setItem(`${competition}Matches`, JSON.stringify(res.data));

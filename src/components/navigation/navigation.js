@@ -7,25 +7,35 @@ import {
   DropdownItem
 } from "reactstrap";
 import { connect } from "react-redux";
+import classes from './navigation.module.scss';
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      active: ''
     };
   }
 
   toggle = () => {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
+    this.setState(prevState => {
+      return {
+        dropdownOpen: !prevState.dropdownOpen,
+      }
+    });
   };
 
-  changeLocation = link => {
+  changeLocation = (link, active) => {
+    this.setState({active});
+
     this.props.history.push(link);
   };
+
+  goToMatches() {
+    this.props.history.push(`/matches/${this.state.active}`);
+  }
 
   render() {
     if (!this.props.competitions) {
@@ -39,7 +49,7 @@ class Navigation extends Component {
           key={competition.code}
           active={this.props.location.pathname.indexOf(competition.code) !== -1}
           onClick={() => {
-            this.changeLocation(`/league/${competition.code}`);
+            this.changeLocation(`/league/${competition.code}`, competition.code);
           }}
         >
           {competition.name}
@@ -52,14 +62,14 @@ class Navigation extends Component {
         <div className="container">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
-              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
                 <DropdownToggle className="dropdown-toggle">
                   Competitions
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu">
                   <DropdownItem
                     onClick={() => {
-                      this.changeLocation(`/`);
+                      this.changeLocation(`/`, '');
                     }}
                     active={this.props.location.pathname === "/"}
                   >
@@ -69,6 +79,14 @@ class Navigation extends Component {
                 </DropdownMenu>
               </Dropdown>
             </li>
+            {
+              this.props.location.pathname !== "/" &&
+              <li>
+                <div className={classes.matchesLink} onClick={() => this.goToMatches()}>
+                  Matches
+                </div>
+              </li>
+            }
           </ul>
         </div>
       </nav>

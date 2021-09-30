@@ -21,7 +21,6 @@ class Standing extends Component {
 
         return (
             <>
-                <button className="btn" onClick={getMatches('2021')}>Matches</button>
                 <StandingTable competitions={competitions}/>
             </>
         )
