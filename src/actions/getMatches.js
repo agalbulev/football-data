@@ -18,7 +18,7 @@ export const getMatches = competition => {
         }
       })
 
-      console.log(matchDays);
+      dispatch(setMatches({ competition, matchDays }));
     })
   };
 };

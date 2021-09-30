@@ -18,6 +18,11 @@ const footballData = (state = { competitions: null }, action) => {
                     ...action.payload
                 ]
             })
+        case "SET_MATCHES":
+            return {
+                ...state,
+                [`matches${action.matches.competition}`] : action.matches.matchDays
+            }
         default:
             return state;
     }

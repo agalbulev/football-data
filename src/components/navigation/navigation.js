@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {
   Dropdown,
   DropdownToggle,
@@ -80,10 +80,10 @@ class Navigation extends Component {
               </Dropdown>
             </li>
             {
-              this.props.location.pathname !== "/" &&
+              this.state.active !== '' &&
               <li>
                 <div className={classes.matchesLink} onClick={() => this.goToMatches()}>
-                  Matches
+                  <Link to={`/matches/${this.state.active}`}>Matches</Link>
                 </div>
               </li>
             }
