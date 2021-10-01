@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { withRouter, Link } from "react-router-dom";
 import {
   Dropdown,
@@ -33,10 +33,6 @@ class Navigation extends Component {
     this.props.history.push(link);
   };
 
-  goToMatches() {
-    this.props.history.push(`/matches/${this.state.active}`);
-  }
-
   render() {
     if (!this.props.competitions) {
       return null;
@@ -64,7 +60,7 @@ class Navigation extends Component {
             <li className="nav-item dropdown">
               <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
                 <DropdownToggle className="dropdown-toggle">
-                  Пръвенства
+                  {this.state.active === '' ? 'Пръвенства': this.props.competitions[this.state.active].competition.name}
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu">
                   <DropdownItem
@@ -81,11 +77,18 @@ class Navigation extends Component {
             </li>
             {
               this.state.active !== '' &&
-              <li>
-                <div className={classes.matchesLink} onClick={() => this.goToMatches()}>
-                  <Link to={`/matches/${this.state.active}`}>Резултати</Link>
-                </div>
-              </li>
+              <Fragment>
+                <li>
+                  <div className={classes.matchesLink}>
+                    <Link to={`/league/${this.state.active}`}>Класиране</Link>
+                  </div>
+                </li>
+                <li>
+                  <div className={classes.matchesLink}>
+                    <Link to={`/matches/${this.state.active}`}>Резултати</Link>
+                  </div>
+                </li>
+              </Fragment>
             }
           </ul>
         </div>

@@ -52,8 +52,8 @@ const Matches = (props) => {
     }
 
     return (
-        <div className='container'>
-            <div className='pt-4'>
+        <Fragment>
+            <div className='pl-3 pt-4'>
                 <MatchDaySelector count={allMatches?.length} current={currentMatchday} onChange={selectMatchday} />
             </div>
             <div className='pt-4'>
@@ -73,11 +73,15 @@ const Matches = (props) => {
                                                     <tr>
                                                         <td className={cx(classes.team, { [classes.bold]: match.score.winner === 'HOME_TEAM' })}>{match.homeTeam.name}</td>
                                                         <td className={`${classes.result} text-center`}>
-                                                            <span>{match.status !== 'SCHEDULED' ? match.score.fullTime.homeTeam : '-'}:{match.status !== 'SCHEDULED' ? match.score.fullTime.awayTeam : '-'}</span>
                                                             {
-                                                                match.status !== 'SCHEDULED' &&
-                                                                <span className={classes.halfTime}>({match.score.halfTime.homeTeam}:{match.score.halfTime.awayTeam})</span>
+                                                                match.status !== 'SCHEDULED' ?
+                                                                    <Fragment>
+                                                                        <span>{match.score.fullTime.homeTeam}:{match.score.fullTime.awayTeam}</span>
+                                                                        <span className={classes.halfTime}>({match.score.halfTime.homeTeam}:{match.score.halfTime.awayTeam})</span>
+                                                                    </Fragment> :
+                                                                    <span>{format(new Date(match.utcDate), 'H:mm')} ч.</span>
                                                             }
+
                                                         </td>
                                                         <td className={cx(classes.team, 'text-right', { [classes.bold]: match.score.winner === 'AWAY_TEAM' })}>{match.awayTeam.name}</td>
                                                     </tr>
@@ -91,7 +95,7 @@ const Matches = (props) => {
                     </table>
                 }
             </div>
-        </div>
+        </Fragment>
     )
 }
 
