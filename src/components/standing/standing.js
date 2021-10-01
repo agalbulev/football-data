@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StandingTable from './standingTable/standingTable';
 import StandingRow from './standingRow/standingRow';
-import { getMatches } from '../../actions/getMatches';
 
 class Standing extends Component {
 

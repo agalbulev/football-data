@@ -58,13 +58,13 @@ class Navigation extends Component {
     });
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand navbar-light bg-light">
         <div className="container">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
               <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
                 <DropdownToggle className="dropdown-toggle">
-                  Competitions
+                  Пръвенства
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu">
                   <DropdownItem
@@ -83,7 +83,7 @@ class Navigation extends Component {
               this.state.active !== '' &&
               <li>
                 <div className={classes.matchesLink} onClick={() => this.goToMatches()}>
-                  <Link to={`/matches/${this.state.active}`}>Matches</Link>
+                  <Link to={`/matches/${this.state.active}`}>Резултати</Link>
                 </div>
               </li>
             }

@@ -23,6 +23,11 @@ const footballData = (state = { competitions: null }, action) => {
                 ...state,
                 [`matches${action.matches.competition}`] : action.matches.matchDays
             }
+        case 'SET_CURRENT_MATCHDAY':
+            return {
+                ...state,
+                [`currentMatchday${action.current.competition}`] : action.current.number
+            }
         default:
             return state;
     }

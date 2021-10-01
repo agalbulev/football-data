@@ -14,7 +14,9 @@
     "bootstrap-scss": "^4.6.0",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
     "chalk": "4.1.0",
+    "classnames": "^2.3.1",
     "css-loader": "5.1.1",
+    "date-fns": "^2.24.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "7.21.0",
@@ -64,7 +66,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set \"INLINE_RUNTIME_CHUNK=false\" && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

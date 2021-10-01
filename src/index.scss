@@ -2,4 +2,15 @@
 
 body {
     font-size: 14px;
+    width: 575px;
+    margin: 0 auto;
+}
+
+.dropdown-menu {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.w-40 {
+    width: 40%;
 }

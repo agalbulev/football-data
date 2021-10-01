@@ -19,6 +19,10 @@ export const getMatches = competition => {
       })
 
       dispatch(setMatches({ competition, matchDays }));
+      
+      if (result.matches.length !== 0 && result.matches[0]) {
+        dispatch(setCurrentMatchDay({ competition, number: result.matches[0].season.currentMatchday }))
+      }
     })
   };
 };
@@ -29,3 +33,8 @@ const setMatches = data => ({
     ...data
   }
 });
+
+const setCurrentMatchDay = current => ({
+  type: 'SET_CURRENT_MATCHDAY',
+  current
+})
