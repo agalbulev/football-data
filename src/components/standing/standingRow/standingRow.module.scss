@@ -1,13 +1,9 @@
 .TeamLogo {
     width: 26px;
-    height: 26px;
 }
 
 .TeamNameCell {
-    overflow: hidden;
     max-width: 150px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     font-size: 16px;
 }
 
@@ -28,4 +24,19 @@
     white-space: nowrap;
     width: 28px;
     vertical-align: middle !important;
+}
+
+.logoAndName {
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-right: 5px;
+    }
+}
+
+.nameOverflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

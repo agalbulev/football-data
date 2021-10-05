@@ -39,7 +39,10 @@ const StandingRow = props => {
         {props.position || props.club.position} {order}
       </th>
       <td className={classes.TeamNameCell}>
-        {teamLogo} {teamName}
+        <div className={classes.logoAndName}>
+          {teamLogo} 
+          <span className={classes.nameOverflow}>{teamName}</span>
+        </div>
       </td>
       <td>{props.club.playedGames}</td>
       <td>{props.club.won}</td>

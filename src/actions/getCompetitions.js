@@ -7,7 +7,7 @@ export const getCompetitions = () => {
         const timeNow = Date.now();
         const lastSync = localStorage.getItem('lastSyncCompetitions') || timeNow;
 
-        if (timeNow === lastSync || timeNow - lastSync > 60000) {
+        if (timeNow === lastSync || timeNow - lastSync > (60000 * 15)) {
             axios.all([
                 axiosInstance.get(`/competitions/2021/standings`),
                 axiosInstance.get(`/competitions/2015/standings`),

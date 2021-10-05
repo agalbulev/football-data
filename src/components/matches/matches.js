@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router';
 import { getMatches } from '../../actions/getMatches';
 import MatchDaySelector from './matchDaySelector/matchDaySelector';
-import classes from './matches.module.scss';
-import cx from 'classnames';
-import { parse, format } from 'date-fns';
-import { bg } from 'date-fns/locale';
+import { format } from 'date-fns';
+import MatchesTable from './matchesTable/MatchesTable';
 
 const Matches = (props) => {
     const [matches, setMatches] = useState([]);
@@ -15,7 +13,7 @@ const Matches = (props) => {
     const allMatches = useSelector(state => {
         return state.footbalData[`matches${match.params.league}`]
     });
-    const currentMatchday = useSelector(state => state.footbalData[`currentMatchday${match.params.league}`])
+    const currentMatchday = useSelector(state => state.footbalData[`currentMatchday${match.params.league}`]);
     const dispatch = useDispatch();
 
     if (!allMatches) {
@@ -59,40 +57,7 @@ const Matches = (props) => {
             <div className='pt-4'>
                 {
                     matches &&
-                    <table className='w-100 table'>
-                        <tbody>
-                            {
-                                Object.keys(matches).map((key, index) => {
-                                    return (
-                                        <Fragment key={index}>
-                                            <tr>
-                                                <td colspan='3' className={classes.date}>{format(parse(key, 'MM/dd/yyyy', new Date()), 'EEEE dd.MM.yyyy', { locale: bg })}</td>
-                                            </tr>
-                                            {
-                                                matches[key].map(match => (
-                                                    <tr>
-                                                        <td className={cx(classes.team, { [classes.bold]: match.score.winner === 'HOME_TEAM' })}>{match.homeTeam.name}</td>
-                                                        <td className={`${classes.result} text-center`}>
-                                                            {
-                                                                match.status !== 'SCHEDULED' ?
-                                                                    <Fragment>
-                                                                        <span>{match.score.fullTime.homeTeam}:{match.score.fullTime.awayTeam}</span>
-                                                                        <span className={classes.halfTime}>({match.score.halfTime.homeTeam}:{match.score.halfTime.awayTeam})</span>
-                                                                    </Fragment> :
-                                                                    <span>{format(new Date(match.utcDate), 'H:mm')} ч.</span>
-                                                            }
-
-                                                        </td>
-                                                        <td className={cx(classes.team, 'text-right', { [classes.bold]: match.score.winner === 'AWAY_TEAM' })}>{match.awayTeam.name}</td>
-                                                    </tr>
-                                                ))
-                                            }
-                                        </Fragment>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <MatchesTable matches={matches} />
                 }
             </div>
         </Fragment>
