@@ -14,7 +14,7 @@ class Standing extends Component {
 
         const competitions = this.props.competitions[league].standings.map((position, index) => {
             return (
-                <StandingRow key={index} club={position} />
+                <StandingRow key={index} club={position} league={league} />
             )
         })
 

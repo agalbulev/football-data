@@ -1,10 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef, useEffect } from 'react';
 import { parse, format } from 'date-fns';
 import { bg } from 'date-fns/locale';
 import cx from 'classnames';
 import classes from './matchesTable.module.scss';
 
-const MatchesTable = ({ matches }) => {
+const MatchesTable = ({ matches, focus }) => {
+    const firstScheduled = useRef();
+
+    useEffect(() => {
+        if (firstScheduled.current && focus) {
+            firstScheduled.current.scrollIntoView({ block: 'center' });
+        }
+
+    }, [firstScheduled, focus])
+
     return (
         <table className='w-100 table'>
             <tbody>
@@ -17,7 +26,7 @@ const MatchesTable = ({ matches }) => {
                                 </tr>
                                 {
                                     matches[key].map((match, index) => (
-                                        <tr key={index}>
+                                        <tr key={index} ref={ref => { if (match.status === 'SCHEDULED' && !firstScheduled.current) { firstScheduled.current = ref } }}>
                                             <td className={cx(classes.team, { [classes.bold]: match.score.winner === 'HOME_TEAM' })}>{match.homeTeam.name}</td>
                                             <td className={`${classes.result} text-center`}>
                                                 {

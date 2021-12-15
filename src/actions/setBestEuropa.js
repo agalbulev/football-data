@@ -7,7 +7,7 @@ export const setBestEuropa = (competitions) => {
         let oldStoredTeamOrder = JSON.parse(localStorage.getItem('oldStoredTeamOrder'));
 
         Object.keys(competitions).forEach(com => {
-            all = [...all, ...competitions[com].standings];
+            all = [...all, ...competitions[com].standings.map(t => ({ ...t, league: com }))];
         })
     
         all = slice(orderBy(all, ['won', 'playedGames', 'points'], ['desc', 'asc', 'desc']), 0, 20);

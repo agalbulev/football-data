@@ -1,7 +1,10 @@
 import React from "react";
 import classes from "./standingRow.module.scss";
+import { useHistory } from 'react-router-dom';
 
 const StandingRow = props => {
+  const history = useHistory();
+
   const teamLogo = props.club.team.crestUrl ? (
     <img
       className={classes.TeamLogo}
@@ -17,6 +20,10 @@ const StandingRow = props => {
     ? `${props.club.position}. ${props.club.team.name}`
     : props.club.team.name;
   let order = null;
+
+  const goToSchedule = id => {
+    history.push(`/schedule/${props.league}/${id}`)
+  }
 
   if (props.order) {
     let orderClasses = [classes.TeamOrder];
@@ -41,7 +48,7 @@ const StandingRow = props => {
       <td className={classes.TeamNameCell}>
         <div className={classes.logoAndName}>
           {teamLogo} 
-          <span className={classes.nameOverflow}>{teamName}</span>
+          <span className={classes.nameOverflow} onClick={() => goToSchedule(props.club.team.id)}>{teamName}</span>
         </div>
       </td>
       <td>{props.club.playedGames}</td>

@@ -13,7 +13,7 @@ const StandingAll = (props) => {
             return o.id === team.team.id
         }).orderChange;
 
-        return <StandingRow key={ index } position={ index + 1 } club={ team } order={ teamOrder } />
+        return <StandingRow key={ index } position={ index + 1 } club={ team } order={ teamOrder } league={team.league} />
     })
 
     return <StandingTable competitions={all}/>;
